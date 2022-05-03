@@ -1,4 +1,5 @@
 #include "utils.h"
+#include "program.h"
 
 struct attrib_pointer {
   GLint size;

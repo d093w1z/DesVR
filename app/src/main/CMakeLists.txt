@@ -12,6 +12,7 @@ file(GLOB_RECURSE SOURCE_FILES
 
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/vendor")
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/vendor/ovr_sdk_mobile/VrApi/Include")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/vendor/ovr_sdk_mobile/SampleCommon/Src")
 
 add_library(DesVR SHARED ${SOURCE_FILES})
 

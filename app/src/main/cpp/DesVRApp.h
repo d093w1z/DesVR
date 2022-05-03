@@ -1,6 +1,6 @@
 #include <VrApi.h>
 #include <stdint.h>
-
+#include "OVR_Uri.h"
 #include "eglHandler.h"
 #include "renderer.h"
 #include "utils.h"
@@ -21,5 +21,5 @@ public:
   void handleInput();
   ovrLayerProjection2 renderFrame(ovrTracking2*);
   void destroy();
-  static void DesVRApp::handleCMD(struct android_app *, int32_t);
+  static void handleCMD(struct android_app *, int32_t);
 };
