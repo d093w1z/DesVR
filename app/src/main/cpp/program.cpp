@@ -65,7 +65,7 @@ Program::create()
     for (enum attrib attrib = ATTRIB_BEGIN; attrib != ATTRIB_END; attrib = (enum attrib) (int(attrib)+1) ) {
         glBindAttribLocation(program, attrib, ATTRIB_NAMES[attrib]);
     }
-
+    info("linking program");
     glLinkProgram(program);
     GLint status = 0;
     glGetProgramiv(program, GL_LINK_STATUS, &status);

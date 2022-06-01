@@ -74,17 +74,18 @@ DesVRApp::updateVRMode()
 }
 
 void
-DesVRApp::handleInput()
+DesVRApp::handleInput(DesVRApp * app)
 {
+    // info("handleInput called");
     bool back_button_down_current_frame = false;
 
     int i = 0;
     ovrInputCapabilityHeader capability;
-    while (vrapi_EnumerateInputDevices(ovr, i, &capability) >= 0) {
+    while (vrapi_EnumerateInputDevices(app->ovr, i, &capability) >= 0) {
         if (capability.Type == ovrControllerType_TrackedRemote) {
             ovrInputStateTrackedRemote input_state;
             input_state.Header.ControllerType = ovrControllerType_TrackedRemote;
-            if (vrapi_GetCurrentInputState(ovr, capability.DeviceID,
+            if (vrapi_GetCurrentInputState(app->ovr, capability.DeviceID,
                                            &input_state.Header) == ovrSuccess) {
                 back_button_down_current_frame |=
                         input_state.Buttons & ovrButton_Back;
@@ -97,16 +98,17 @@ DesVRApp::handleInput()
         ++i;
     }
 
-    if (back_button_down_previous_frame &&
+    if (app->back_button_down_previous_frame &&
         !back_button_down_current_frame) {
-        vrapi_ShowSystemUI(java, VRAPI_SYS_UI_CONFIRM_QUIT_MENU);
+        vrapi_ShowSystemUI(app->java, VRAPI_SYS_UI_CONFIRM_QUIT_MENU);
     }
-    this->back_button_down_previous_frame = back_button_down_current_frame;
+    app->back_button_down_previous_frame = back_button_down_current_frame;
 }
 
 void
 DesVRApp::create(ovrJava* java)
 {
+    // info("app create started");
     this->java = java;
     egl.create();
     renderer.create(vrapi_GetSystemPropertyInt(
@@ -125,8 +127,10 @@ DesVRApp::destroy()
 {
     egl.destroy();
     renderer.destroy();
+    info("app destroyed");
 }
 
-ovrLayerProjection2 DesVRApp::renderFrame(ovrTracking2* tracking){
+ovrLayerProjection2& DesVRApp::renderFrame(ovrTracking2* tracking){
+    // info("frame rendered");
     return renderer.renderFrame(tracking);
 }

@@ -23,6 +23,7 @@ Geometry::create()
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(INDICES), INDICES,
                  GL_STATIC_DRAW);
     glBindVertexArray(0);
+    info("geometry created");
 }
 
 void

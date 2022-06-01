@@ -10,5 +10,5 @@ class Renderer {
 public:
   void create(GLsizei width, GLsizei height);
   void destroy();
-  ovrLayerProjection2 renderFrame(ovrTracking2* tracking);
+  ovrLayerProjection2& renderFrame(ovrTracking2* tracking);
 };

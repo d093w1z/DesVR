@@ -24,7 +24,7 @@ Renderer::destroy()
     }
 }
 
-ovrLayerProjection2
+ovrLayerProjection2&
 Renderer::renderFrame(ovrTracking2* tracking)
 {
     ovrMatrix4f model_matrix = ovrMatrix4f_CreateTranslation(0.0, 0.0, -1.0);
@@ -98,4 +98,5 @@ Renderer::renderFrame(ovrTracking2* tracking)
                                         framebuffer->swap_chain_length;
     }
     return layer;
+    info("frame rendered");
 }

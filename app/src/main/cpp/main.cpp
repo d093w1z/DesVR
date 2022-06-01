@@ -29,6 +29,7 @@ android_main(struct android_app* android_app)
     DesVRApp app;
     // app_create(&app, &java);
     app.create(&java);
+    info("app created");
 
     android_app->userData = &app;
     android_app->onAppCmd = DesVRApp::handleCMD;
@@ -50,7 +51,7 @@ android_main(struct android_app* android_app)
         }
 
         // app_handle_input(&app);
-        app.handleInput();
+        DesVRApp::handleInput(&app);
 
         if (app.ovr == NULL) {
             continue;

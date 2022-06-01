@@ -1,9 +1,8 @@
 #include <VrApi.h>
 #include <stdint.h>
-#include "OVR_Uri.h"
+#include "utils.h"
 #include "eglHandler.h"
 #include "renderer.h"
-#include "utils.h"
 
 class DesVRApp {
   ovrJava *java;
@@ -18,8 +17,8 @@ public:
   ovrMobile *ovr;
   void create(ovrJava *java);
   void updateVRMode();
-  void handleInput();
-  ovrLayerProjection2 renderFrame(ovrTracking2*);
+  static void handleInput(DesVRApp * app);
+  ovrLayerProjection2& renderFrame(ovrTracking2*);
   void destroy();
   static void handleCMD(struct android_app *, int32_t);
 };
